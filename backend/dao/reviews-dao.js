@@ -17,8 +17,8 @@ class ReviewsDao {
     }
 
     /**
-     * Adds review documnent with the specified details to the reviews collection.
-     * @returns Returns document that contains the status of the insert operation.
+     * Adds review document with the specified details to the reviews collection.
+     * @returns Return document that contains the status of the insert operation.
      */
     static async addReview(movieId, user, review, date) {
         try {
@@ -31,7 +31,22 @@ class ReviewsDao {
 
         } catch (error) {
             console.error(`Unable to post review: ${error}`);
-            return {error};
+            return { error };
+        }
+    }
+
+    /**
+     * Update the review document in the review collection with the specified id. 
+     */
+    static async updateReview(reviewId, userId, review, date) {
+        try {
+            return await reviews.updateOne(
+                { user_id: userId, _id: ObjectId(reviewId) },
+                { $set: { review: review, date: date } }
+            );
+        } catch (error) {
+            console.error(`Unable to update review: ${error}`);
+            return { error };
         }
     }
 }
