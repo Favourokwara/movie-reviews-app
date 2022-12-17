@@ -36,7 +36,8 @@ class ReviewsDao {
     }
 
     /**
-     * Update the review document in the review collection with the specified id. 
+     * Update the review document in the review collection with the specified id.
+     * @returns Return document that contains the status of the update operation.
      */
     static async updateReview(reviewId, userId, review, date) {
         try {
@@ -44,8 +45,25 @@ class ReviewsDao {
                 { user_id: userId, _id: ObjectId(reviewId) },
                 { $set: { review: review, date: date } }
             );
+
         } catch (error) {
             console.error(`Unable to update review: ${error}`);
+            return { error };
+        }
+    }
+
+    /**
+     * Delete the review document in the review collection with the specified id. 
+     * @returns Return document that contains the status of the delete operation.
+     */
+    static async deleteReview(reviewId, userId) {
+        try {
+            return await reviews.deleteOne({
+                _id: ObjectId(reviewId), user_id: userId
+            });
+            
+        } catch (error) {
+            console.error(`Unable to delete review: ${error}`);
             return { error };
         }
     }
