@@ -38,9 +38,25 @@ class MoviesDao {
             const moviesList = await cursor.toArray();
             const totalNumMovies = await movies.countDocuments(query);
             return { moviesList, totalNumMovies };
+
         } catch (error) {
             console.error(`Unable to execute find command: ${error}`);
             return { moviesList: [], totalNumMovies: 0 };
         }
+    }
+
+    /**
+     * Returns array containing all possible ratings a movie object could have.
+     */
+    static async getRatings() {
+        let ratings = [];
+
+        try {
+            ratings = await movies.distinct('rated');
+        } catch (error) {
+            console.error(`Unable to get ratings: ${error}`);
+        } 
+
+        return ratings;
     }
 }
