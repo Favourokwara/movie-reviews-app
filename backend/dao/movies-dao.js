@@ -84,3 +84,5 @@ class MoviesDao {
         return ratings;
     }
 }
+
+export default MoviesDao;
