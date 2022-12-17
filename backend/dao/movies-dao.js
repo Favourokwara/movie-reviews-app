@@ -46,6 +46,31 @@ class MoviesDao {
     }
 
     /**
+     * Returns the movie that contains the given id from the movies collection.
+     * @param {string} id String containing the id of the document to retrieve.
+     * @returns Returns movie document object with the specified object id.
+     */
+    static async getMoviesById(id) {
+        try {
+            return await movies.aggregate([
+                { $match: { _id: new ObjectId(id) } },
+                {
+                    $lookup: {
+                        from: 'reviews',
+                        localField: 'id',
+                        foreignField: 'movie_id',
+                        as: 'reviews'
+                    }
+                }
+            ]).next();
+
+        } catch (error) {
+            console.error(`Something went wrong in getMoviesById: ${error}`);
+            throw error;
+        }
+    }
+
+    /**
      * Returns array containing all possible ratings a movie object could have.
      */
     static async getRatings() {
