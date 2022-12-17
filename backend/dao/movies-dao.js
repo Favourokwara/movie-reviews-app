@@ -48,7 +48,6 @@ class MoviesDao {
     /**
      * Returns the movie that contains the given id from the movies collection.
      * @param {string} id String containing the id of the document to retrieve.
-     * @returns Returns movie document object with the specified object id.
      */
     static async getMoviesById(id) {
         try {
