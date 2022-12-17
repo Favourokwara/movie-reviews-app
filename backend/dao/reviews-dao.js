@@ -23,10 +23,8 @@ class ReviewsDao {
     static async addReview(movieId, user, review, date) {
         try {
             return await review.insertOne({
-                name: user.name,
-                user_id: user._id,
-                date, review,
-                movie_id: ObjectId(movieId)
+                name: user.name, user_id: user._id, date,
+                review, movie_id: ObjectId(movieId)
             });
 
         } catch (error) {

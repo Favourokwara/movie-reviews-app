@@ -34,7 +34,7 @@ class MoviesDao {
         try {
             cursor = await movies
                 .find(query).limit(moviesPerPage).skip(moviesPerPage * pages);
-            
+
             const moviesList = await cursor.toArray();
             const totalNumMovies = await movies.countDocuments(query);
             return { moviesList, totalNumMovies };
@@ -56,7 +56,7 @@ class MoviesDao {
                 {
                     $lookup: {
                         from: 'reviews',
-                        localField: 'id',
+                        localField: '_id',
                         foreignField: 'movie_id',
                         as: 'reviews'
                     }
@@ -79,7 +79,7 @@ class MoviesDao {
             ratings = await movies.distinct('rated');
         } catch (error) {
             console.error(`Unable to get ratings: ${error}`);
-        } 
+        }
 
         return ratings;
     }
