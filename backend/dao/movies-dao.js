@@ -49,7 +49,7 @@ class MoviesDao {
      * Returns the movie that contains the given id from the movies collection.
      * @param {string} id String containing the id of the document to retrieve.
      */
-    static async getMoviesById(id) {
+    static async getMovieById(id) {
         try {
             return await movies.aggregate([
                 { $match: { _id: new ObjectId(id) } },
