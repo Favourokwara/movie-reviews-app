@@ -18,8 +18,8 @@ async function main() {
         await MoviesDAO.injectDatabase(client);
         await ReviewsDAO.injectDatabase(client);
 
-        app.listen(port,
-            () => console.log(`server is running on ${port}`));
+        app
+            .listen(port, () => console.log(`server is running on ${port}`));
 
     } catch (error) {
         console.error(error);

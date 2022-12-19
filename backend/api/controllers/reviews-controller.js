@@ -32,7 +32,7 @@ class ReviewsController {
             const { error } = ReviewResponse;
 
             if (error) response.status.json({ error });
-            
+
             if (ReviewResponse.modifiedCount === 0) {
                 throw new Error('unable to update review. User may not be original poster')
             }

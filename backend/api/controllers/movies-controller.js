@@ -9,7 +9,7 @@ class MoviesController {
             ? parseInt(request.query.moviesPerPage) : 20;
         const page = request.query.page
             ? parseInt(request.query.page) : 0;
-        
+
         let filters = {};
 
         if (request.query.rated) {
