@@ -5,12 +5,18 @@ import ReviewsController from '../controllers/reviews-controller.js';
 
 const router = express.Router();
 
-router.route('/');
+router.route('/')
+    .get(MoviesController.apiGetMovies);
 
-router.route('/reviews');
+router.route('/reviews')
+    .put(ReviewsController.apiUpdateReview)
+    .post(ReviewsController.apiPostReview)
+    .delete(ReviewsController.apiDeleteReview);
 
-router.route('/id/:id');
+router.route('/id/:id')
+    .get(MoviesController.apiGetMovieById);
 
-router.route('/ratings');
+router.route('/ratings')
+    .get(MoviesController.apiGetRatings);
 
 export default router;
