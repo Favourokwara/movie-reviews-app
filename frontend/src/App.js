@@ -16,8 +16,25 @@ import Login from './components/login';
 function App() {
   return ( 
     <div className='App'>
-      <NavBar>
+      <NavBar bg='light' expand='lg'>
+        <NavBar.Brand>Movie Reviews</NavBar.Brand>
+        <NavBar.Toggle aria-controls='basic-navbar-nav' />
 
+        <NavBar.Collapse id='basic-navbar-nav'>
+          <Nav className='me-auto'>
+
+            <Nav.Link>
+              <Link to={'/movies'}>Movies</Link>
+            </Nav.Link>
+
+            <Nav.Link>
+              {user ?
+                (<a onclick={logout}>Logout User</a>)
+                : (<Link to={'/login'}>Login</Link>)}
+            </Nav.Link>
+
+          </Nav>
+        </NavBar.Collapse>
       </NavBar>
 
       <Routes>
