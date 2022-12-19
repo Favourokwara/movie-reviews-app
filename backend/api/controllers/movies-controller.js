@@ -1,4 +1,4 @@
-import MoviesDao from '../../dao/movies-dao.js';
+import MoviesDAO from '../../dao/movies-dao.js';
 
 class MoviesController {
     /**
@@ -19,7 +19,7 @@ class MoviesController {
             filters.title = request.query.title;
         }
 
-        const { moviesList, totalNumMovies } = await MoviesDao
+        const { moviesList, totalNumMovies } = await MoviesDAO
             .getMovies({ filters, page, moviesPerPage });
 
         response.json({
@@ -35,7 +35,7 @@ class MoviesController {
     static async apiGetMovieById(request, response) {
         try {
             let id = request.params.id || {};
-            let movie = await MoviesDao.getMovieById(id);
+            let movie = await MoviesDAO.getMovieById(id);
 
             if (!movie) {
                 response.status(404).json({ error: 'not found' });
@@ -54,7 +54,7 @@ class MoviesController {
      */
     static async apiGetRatings(request, response) {
         try {
-            let ratings = await MoviesDao.getRatings();
+            let ratings = await MoviesDAO.getRatings();
             response.json(ratings);
 
         } catch (error) {

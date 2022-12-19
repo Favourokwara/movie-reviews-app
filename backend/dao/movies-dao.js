@@ -2,7 +2,7 @@ import { ObjectId } from 'mongodb';
 
 let movies;
 
-class MoviesDao {
+class MoviesDAO {
     /**
      * Instantiates interface used for communicating with the movies collection.
      * @param {Object} client MongoClient object for connecting to the database.
@@ -85,4 +85,4 @@ class MoviesDao {
     }
 }
 
-export default MoviesDao;
+export default MoviesDAO;
