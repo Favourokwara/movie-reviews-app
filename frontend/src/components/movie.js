@@ -3,7 +3,7 @@ import React from 'react';
 function Movie() {
     return (
         <div className="App">
-            Add Review
+            Movie
         </div>
     );
 }
