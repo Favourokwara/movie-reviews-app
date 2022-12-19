@@ -2,7 +2,7 @@ import { ObjectId } from 'mongodb';
 
 let reviews;
 
-class ReviewsDao {
+class ReviewsDAO {
     /**
      * Instantiates interface used for communicating with the reviews collection.
      * @param {Object} client MongoClient object for connecting to the database.
@@ -67,4 +67,4 @@ class ReviewsDao {
     }
 }
 
-export default ReviewsDao;
+export default ReviewsDAO;
