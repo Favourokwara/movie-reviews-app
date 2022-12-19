@@ -15,10 +15,17 @@ import Login from './components/login';
 
 function App() {
   return ( 
-    <div className="App">
-      <NavBar></NavBar>
+    <div className='App'>
+      <NavBar>
 
-      <Routes></Routes>
+      </NavBar>
+
+      <Routes>
+        {['/', '/movies'].map(path => <Route exact path={path} element={<MoviesList />} />)}
+        <Route path='/movies/:id/review' element={<AddReview user={user} />} />
+        <Route path='/movies/:id/' element={<Movie user={user} />} />
+        <Route path='/login' element={<Login login={login} />} />
+      </Routes>
     </div>
   );
 }
