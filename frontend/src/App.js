@@ -3,8 +3,8 @@ import { Routes, Route, Link } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Nav from './components/Nav';
-import NavBar from './components/NavBar';
+import Nav from 'react-bootstrap/Nav';
+import NavBar from 'react-bootstrap/NavBar';
 
 import AddReview from './components/add-review';
 import MoviesList from './components/movies-list';
@@ -14,7 +14,17 @@ import Login from './components/login';
 
 
 function App() {
-  return ( 
+  const [user, setUser] = React.useState(null)
+  
+  async function login(user = null) {
+    setUser(user);
+  }
+
+  async function logout() {
+    setUser(null);
+  }
+  
+  return (
     <div className='App'>
       <NavBar bg='light' expand='lg'>
         <NavBar.Brand>Movie Reviews</NavBar.Brand>
@@ -39,8 +49,11 @@ function App() {
 
       <Routes>
         {['/', '/movies'].map(path => <Route exact path={path} element={<MoviesList />} />)}
+
         <Route path='/movies/:id/review' element={<AddReview user={user} />} />
+
         <Route path='/movies/:id/' element={<Movie user={user} />} />
+
         <Route path='/login' element={<Login login={login} />} />
       </Routes>
     </div>
